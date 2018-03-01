@@ -1,0 +1,55 @@
+#!/usr/bin/env node
+
+var program = require('commander');
+var fs = require('fs');
+var path = require('path');
+
+var ignored = ['.idea', 'node_modules', 'lib', '.DS_Store', '.Trashes'];
+program
+    .version('0.0.1', '-v, --version')
+
+program
+    .command('init')
+    .description('初始化 tigerface 项目结构')
+    .alias('i')
+    .action(function () {
+        let desc = path.join('.');
+        let src = path.join(__dirname, '../template');
+
+        copyFile(src, desc);
+    })
+
+program
+    .command('test')
+    .description('执行测试')
+    .alias('i')
+    .action(function () {
+        console.log("运行测试");
+    })
+
+
+program.parse(process.argv);
+
+function copyFile(src, desc) {
+    if (!fs.existsSync(desc)) fs.mkdirSync(desc);
+    fs.readdir(src, function (err, files) {
+        files.forEach(function (cur) {
+            if (ignored.indexOf(cur) < 0) {
+                let _desc = path.join(desc, cur);
+                let _src = path.join(src, cur);
+                if (!fs.existsSync(_desc)) {
+                    if (fs.statSync(_src).isFile()) {
+                        fs.copyFileSync(_src, _desc);
+                    } else {
+                        // 递归
+                        copyFile(_src, _desc);
+                    }
+                    console.log(_desc + " 创建完毕");
+                } else {
+                    console.log(_desc + " 已存在");
+                }
+            }
+        });
+    })
+}
+
