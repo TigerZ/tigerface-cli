@@ -1,0 +1,44 @@
+{
+  "env": {
+    "development": {
+      "presets": [
+        [
+          "env",
+          {
+            "modules": false
+          }
+        ],
+        "stage-1",
+        "react"
+      ],
+      "plugins": [
+        "react-hot-loader/babel"
+      ]
+    },
+    "production": {
+      "presets": [
+        "env",
+        "stage-1",
+        "react"
+      ]
+    },
+    "test": {
+      "presets": [
+        "env",
+        "stage-1",
+        "react",
+        "power-assert"
+      ],
+      "plugins": [
+        [
+          "module-resolver",
+          {
+            "root": [
+              "./src"
+            ]
+          }
+        ]
+      ]
+    }
+  }
+}

@@ -1,7 +1,5 @@
 /src/
 /.idea/
-run.sh
 .npmignore
 .gitignore
-.babelrc
 

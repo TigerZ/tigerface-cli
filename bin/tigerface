@@ -9,14 +9,16 @@ program
     .version('0.0.1', '-v, --version')
 
 program
-    .command('init')
+    .command('init <template>')
     .description('初始化 tigerface 项目结构')
     .alias('i')
-    .action(function () {
-        let desc = path.join('.');
-        let src = path.join(__dirname, '../template');
-
-        copyFile(src, desc);
+    .action(function (template) {
+        if (template === 'example') {
+            let desc = path.join('.');
+            let src = path.join(__dirname, '../template/example');
+            copyFile(src, desc);
+        } else
+            throw new Error("不支持模板名称：" + template);
     })
 
 program
