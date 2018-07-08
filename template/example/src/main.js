@@ -1,17 +1,18 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import {AppContainer} from 'react-hot-loader'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { AppContainer } from 'react-hot-loader';
 import AppRoot from './ChartsAppRoot';
-import $ from 'jquery';
+
+const { $ } = global;
 window.$ = $;
 
 const render = (Component) => {
     ReactDOM.render(
         <AppContainer>
-            <Component/>
+            <Component />
         </AppContainer>,
         document.getElementById('root'),
-    )
+    );
 };
 
 render(AppRoot);
@@ -20,6 +21,6 @@ render(AppRoot);
 if (module.hot) {
     module.hot.accept('./ChartsAppRoot', () => {
         render(AppRoot);
-    })
+    });
 }
 

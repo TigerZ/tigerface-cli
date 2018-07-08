@@ -2,6 +2,8 @@
 
 tigerface-cli 是 tigerface.js 的辅助工具，用于快速创建项目结构。
 
+> 此项目依赖 node.js 8.5 以上版本
+
 ### 安装
 
 ```
